@@ -1,3 +1,8 @@
+#Author	Marcos Ferreira da Rocha
+#Email Marcos.fr.rocha@gmail.com
+#Esse script instala os programas necessários para o meu dia a dia.
+
+
 virtualbox(){
 sudo pacman -S virtualbox --noconfirm
 sudo pacman -S virtualbox-host-modules-arch --noconfirm
@@ -38,7 +43,7 @@ yaourt -S shadow-icon-theme paper-gtk-theme-git osx-arc-shadow paper-gtk-theme-g
 
 
 escritorio(){
-yaourt -S  libreoffice-fresh-pt-br zim  typora --noconfirm
+yaourt -S irpf libreoffice-fresh-pt-br zim  typora --noconfirm
 }
 
 
@@ -53,6 +58,9 @@ sudo systemctl start emby-server
 sudo systemctl enable emby-server
 }
 
+desenvolvimento(){
+yaourt -S smartgit
+}
 
 virtualbox
 comunicacao
@@ -62,3 +70,4 @@ personalize
 escritorio
 webdesign
 multimidia
+desenvolvimento
