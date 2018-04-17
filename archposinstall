@@ -38,7 +38,7 @@ yaourt -S shadow-icon-theme paper-gtk-theme-git osx-arc-shadow paper-gtk-theme-g
 
 
 escritorio(){
-yaourt -S  libreoffice-fresh-pt-BR zim  typora --noconfirm
+yaourt -S  libreoffice-fresh-pt-br zim  typora --noconfirm
 }
 
 
