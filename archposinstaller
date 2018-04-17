@@ -53,6 +53,7 @@ yaourt -S aptana-studio bluefish bluegriffon filezilla     --noconfirm
 
 
 multimidia(){
+yaourt -S youtube-dl
 sudo pacman -S emby-server --noconfirm
 sudo systemctl start emby-server
 sudo systemctl enable emby-server
@@ -70,4 +71,5 @@ personalize
 escritorio
 webdesign
 multimidia
+navegadores
 desenvolvimento
