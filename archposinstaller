@@ -91,16 +91,16 @@ echo "(Exit status was $exitstatus)"
 
 cmd=(whiptail --separate-output --checklist "Selecione as opções:" 22 76 16)
 opcoes=(1 "Virtualbox" on
-         2 "Comunicacao" on
-         3 "Gráficos" on
-         4 "Ferramentas" on
-         5 "Personalize" on
-         6 "Escritório" on
-         7 "Webdesign" on
-         8 "Multimidia" on
-         9 "Navegadores" on
-         10 "Desenvolvimento   " on
-		 11 "Youtube" on)
+        2 "Comunicacao" on
+        3 "Gráficos" on
+        4 "Ferramentas" on
+        5 "Personalize" on
+        6 "Escritório" on
+        7 "Webdesign" on
+        8 "Multimidia" on
+        9 "Navegadores" on
+        10 "Desenvolvimento   " on
+		11 "Youtube" on)
 funcoes=$("${cmd[@]}" "${opcoes[@]}" 2>&1 >/dev/tty)
 clear
 for funcao in $funcoes
