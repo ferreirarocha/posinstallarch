@@ -14,10 +14,12 @@ sudo -S <<< $PASSWORD gpasswd -a marcos vboxusers
 
 
 comunicação(){
+sudo -S <<< $PASSWORD ls /opt > /dev/null	
 yaourt -S telegram-desktop-bin --noconfirm
 }
 
 graficos(){
+sudo -S <<< $PASSWORD ls /opt > /dev/null
 yaourt -S vlc obs-studio gst-libav --noconfirm
 yaourt -S inkscape gimp audacity --noconfirm 
 yaourt -S kdenlive frei0r-plugins oxygen-icons breeze breeze-gtk dvdauthor kde-gtk-config --noconfirm 
@@ -26,39 +28,44 @@ sudo -S <<< $PASSWORD pacman -S oxygen-icons breeze  frei0r-plugins  breeze-gtk 
 
 
 navegadores(){
+sudo -S <<< $PASSWORD ls /opt > /dev/null	
 yaourt -S firefox opera google-chrome vivaldi  yandex-browser-beta --noconfirm
 }
 
 
 feramentas(){
-yaourt -S rsync gparted openssh htop nmap iptraf wget curl p7zip --noconfirm
+sudo -S <<< $PASSWORD pacman  -S rsync gparted openssh htop nmap iptraf wget curl p7zip --noconfirm
 }
 
 
 personalize(){
+sudo -S <<< $PASSWORD ls /opt > /dev/null
 yaourt -S gnome-shell-extension-installer  chrome-gnome-shell  --noconfirm
 yaourt -S shadow-icon-theme paper-gtk-theme-git osx-arc-shadow paper-gtk-theme-git  --noconfirm
 }
 
 
 escritorio(){
+sudo -S <<< $PASSWORD ls /opt > /dev/null
 yaourt -S irpf libreoffice-fresh-pt-br zim  typora --noconfirm
 }
 
 
 webdesign(){
+sudo -S <<< $PASSWORD ls /opt > /dev/null
 yaourt -S aptana-studio bluefish bluegriffon filezilla     --noconfirm
 }
 
 
 multimidia(){
-yaourt -S youtube-dl
+sudo pacman -S youtube-dl
 sudo -S <<< $PASSWORD pacman -S emby-server --noconfirm
 sudo -S <<< $PASSWORD systemctl start emby-server
 sudo -S <<< $PASSWORD systemctl enable emby-server
 }
 
 desenvolvimento(){
+sudo -S <<< $PASSWORD ls /opt > /dev/null
 yaourt -S smartgit   --noconfirm
 yaourt -S aur/sublime-text-dev --noconfirm
 }
@@ -71,22 +78,26 @@ sudo -S <<< $PASSWORD chmod +x /opt/youtube
 echo "export PATH=$PATH:/opt " >> /home/marcos/.bashrc
 }
 
+jogos(){
+sudo -S <<< $PASSWORD ls /opt > /dev/null
+yaourt -S tuxpaint --noconfirm	
+yaourt -S community/supertuxkart  --noconfirm	
+}
 
+
+acessorios(){
+sudo -S <<< $PASSWORD ls /opt > /dev/null
+yaourt -S aur/albert	 --noconfirm
+}
 
 PASSWORD=$(whiptail --passwordbox "Entre com a senha  de usuário privilegiado sudo" 8 78 --title "Senha Administrativa" 3>&1 1>&2 2>&3)
-
-
-
 exitstatus=$?
 if [ $exitstatus = 0 ]; then
     echo "Prosseguir " $PASSWORD
 else
     echo "Cancelado."
 fi
-
 echo "(Exit status was $exitstatus)"
-
-
 
 
 cmd=(whiptail --separate-output --checklist "Selecione as opções:" 22 76 16)
@@ -100,7 +111,10 @@ opcoes=(1 "Virtualbox" on
         8 "Multimidia" on
         9 "Navegadores" on
         10 "Desenvolvimento   " on
-		11 "Youtube" on)
+		11 "Youtube" on
+		12 "Jogos" on
+		13 "Acessórios" on)
+
 funcoes=$("${cmd[@]}" "${opcoes[@]}" 2>&1 >/dev/tty)
 clear
 for funcao in $funcoes
@@ -128,6 +142,10 @@ do
 			desenvolvimento;;
 		11)
 			youtube;;
+		12)
+			jogos;;	
+		13)
+			acessorios;;				
     esac
 done
 
