@@ -63,6 +63,14 @@ yaourt -S smartgit   --noconfirm
 yaourt -S aur/sublime-text-dev --noconfirm
 }
 
+youtube(){
+wget -P /opt/ https://raw.githubusercontent.com/ferreirarocha/posinstallarch/master/video  
+wget -P /opt/ https://raw.githubusercontent.com/ferreirarocha/posinstallarch/master/youtube
+sudo chmod +x /opt/video
+sudo chmod +x /opt/youtube
+echo "export PATH=$PATH:/opt " >> /home/marcos/.bashrc
+}
+
 virtualbox
 comunicacao
 graficos
@@ -73,3 +81,7 @@ webdesign
 multimidia
 navegadores
 desenvolvimento
+youtube
+
+
+
