@@ -31,8 +31,7 @@ yaourt -S firefox opera google-chrome vivaldi  yandex-browser-beta --noconfirm
 
 
 feramentas(){
-yaourt -S rsync gparted openssh htop nmap iptraf wget curl p7zip 
---noconfirm
+yaourt -S rsync gparted openssh htop nmap iptraf wget curl p7zip --noconfirm
 }
 
 
