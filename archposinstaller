@@ -8,8 +8,8 @@ sudo -S <<< $PASSWORD pacman -S virtualbox --noconfirm
 sudo -S <<< $PASSWORD pacman -S virtualbox-host-modules-arch --noconfirm
 sudo -S <<< $PASSWORD modprobe vboxdrv --noconfirm
 sudo -S <<< $PASSWORD pacman -S qt5-x11extras --noconfirm
-yaourt virtualbox-ext-oracle --noconfirm
 sudo -S <<< $PASSWORD gpasswd -a marcos vboxusers 
+yaourt virtualbox-ext-oracle --noconfirm
 }
 
 
@@ -88,6 +88,8 @@ yaourt -S community/supertuxkart  --noconfirm
 acessorios(){
 sudo -S <<< $PASSWORD ls /opt > /dev/null
 yaourt -S aur/albert	 --noconfirm
+sudo -S <<< $PASSWORD sudo pacman -S klavaro  --noconfirm
+
 }
 
 PASSWORD=$(whiptail --passwordbox "Entre com a senha  de usuário privilegiado sudo" 8 78 --title "Senha Administrativa" 3>&1 1>&2 2>&3)
