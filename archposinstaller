@@ -59,7 +59,8 @@ sudo systemctl enable emby-server
 }
 
 desenvolvimento(){
-yaourt -S smartgit
+yaourt -S smartgit   --noconfirm
+yaourt -S aur/sublime-text-dev --noconfirm
 }
 
 virtualbox
