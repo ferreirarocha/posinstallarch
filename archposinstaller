@@ -4,12 +4,12 @@
 
 
 virtualbox(){
-sudo pacman -S virtualbox --noconfirm
-sudo pacman -S virtualbox-host-modules-arch --noconfirm
-sudo modprobe vboxdrv --noconfirm
+sudo -S <<< $PASSWORD pacman -S virtualbox --noconfirm
+sudo -S <<< $PASSWORD pacman -S virtualbox-host-modules-arch --noconfirm
+sudo -S <<< $PASSWORD modprobe vboxdrv --noconfirm
+sudo -S <<< $PASSWORD pacman -S qt5-x11extras --noconfirm
 yaourt virtualbox-ext-oracle --noconfirm
-sudo pacman -S qt5-x11extras --noconfirm
-sudo gpasswd -a marcos vboxusers 
+sudo -S <<< $PASSWORD gpasswd -a marcos vboxusers 
 }
 
 
@@ -21,7 +21,7 @@ graficos(){
 yaourt -S vlc obs-studio gst-libav --noconfirm
 yaourt -S inkscape gimp audacity --noconfirm 
 yaourt -S kdenlive frei0r-plugins oxygen-icons breeze breeze-gtk dvdauthor kde-gtk-config --noconfirm 
-sudo pacman -S oxygen-icons breeze  frei0r-plugins  breeze-gtk  --noconfirm
+sudo -S <<< $PASSWORD pacman -S oxygen-icons breeze  frei0r-plugins  breeze-gtk  --noconfirm
 }
 
 
@@ -53,9 +53,9 @@ yaourt -S aptana-studio bluefish bluegriffon filezilla     --noconfirm
 
 multimidia(){
 yaourt -S youtube-dl
-sudo pacman -S emby-server --noconfirm
-sudo systemctl start emby-server
-sudo systemctl enable emby-server
+sudo -S <<< $PASSWORD pacman -S emby-server --noconfirm
+sudo -S <<< $PASSWORD systemctl start emby-server
+sudo -S <<< $PASSWORD systemctl enable emby-server
 }
 
 desenvolvimento(){
@@ -64,24 +64,74 @@ yaourt -S aur/sublime-text-dev --noconfirm
 }
 
 youtube(){
-wget -P /opt/ https://raw.githubusercontent.com/ferreirarocha/posinstallarch/master/video  
-wget -P /opt/ https://raw.githubusercontent.com/ferreirarocha/posinstallarch/master/youtube
-sudo chmod +x /opt/video
-sudo chmod +x /opt/youtube
+sudo -S <<< $PASSWORD wget -P /opt/ https://raw.githubusercontent.com/ferreirarocha/posinstallarch/master/video  
+sudo -S <<< $PASSWORD wget -P /opt/ https://raw.githubusercontent.com/ferreirarocha/posinstallarch/master/youtube
+sudo -S <<< $PASSWORD chmod +x /opt/video
+sudo -S <<< $PASSWORD chmod +x /opt/youtube
 echo "export PATH=$PATH:/opt " >> /home/marcos/.bashrc
 }
 
-virtualbox
-comunicacao
-graficos
-ferramentas
-personalize
-escritorio
-webdesign
-multimidia
-navegadores
-desenvolvimento
-youtube
+
+
+PASSWORD=$(whiptail --passwordbox "Entre com a senha  de usuário privilegiado sudo" 8 78 --title "Senha Administrativa" 3>&1 1>&2 2>&3)
+
+
+
+exitstatus=$?
+if [ $exitstatus = 0 ]; then
+    echo "Prosseguir " $PASSWORD
+else
+    echo "Cancelado."
+fi
+
+echo "(Exit status was $exitstatus)"
+
+
+
+
+cmd=(whiptail --separate-output --checklist "Selecione as opções:" 22 76 16)
+opcoes=(1 "Virtualbox" on
+         2 "Comunicacao" on
+         3 "Gráficos" on
+         4 "Ferramentas" on
+         5 "Personalize" on
+         6 "Escritório" on
+         7 "Webdesign" on
+         8 "Multimidia" on
+         9 "Navegadores" on
+         10 "Desenvolvimento   " on
+		 11 "Youtube" on)
+funcoes=$("${cmd[@]}" "${opcoes[@]}" 2>&1 >/dev/tty)
+clear
+for funcao in $funcoes
+do
+    case $funcao in
+    	1)
+			virtualbox;;
+		2)
+			comunicacao;;
+		3)
+			graficos;;
+		4)
+			ferramentas;;
+		5)
+			personalize;;
+		6)
+			escritorio;;
+		7)
+			webdesign;;
+		8)
+			multimidia;;
+		9)
+			navegadores;;
+		10)
+			desenvolvimento;;
+		11)
+			youtube;;
+    esac
+done
+
+
 
 
 
