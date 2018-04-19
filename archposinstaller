@@ -65,9 +65,9 @@ sudo -S <<< $PASSWORD systemctl enable emby-server
 }
 
 desenvolvimento(){
-sudo -S <<< $PASSWORD ls /opt > /dev/null
+sudo -S <<< $PASSWORD pacman -S community/docker-machine 
 yaourt -S smartgit   --noconfirm
-yaourt -S aur/sublime-text-dev --noconfirm
+yaourt -S aur/sublime-text-dev  --noconfirm
 }
 
 youtube(){
@@ -87,7 +87,7 @@ yaourt -S community/supertuxkart  --noconfirm
 
 acessorios(){
 sudo -S <<< $PASSWORD ls /opt > /dev/null
-yaourt -S aur/albert	 --noconfirm
+yaourt -S aur/albert tilix	 --noconfirm
 sudo -S <<< $PASSWORD sudo pacman -S klavaro  --noconfirm
 
 }
