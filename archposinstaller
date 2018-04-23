@@ -33,9 +33,9 @@ yaourt -S firefox opera google-chrome vivaldi  yandex-browser-beta --noconfirm
 }
 
 
-feramentas(){
+ferramentas(){
 sudo -S <<< $PASSWORD pacman  -S rsync  gparted lsof openssh htop nmap iptraf wget curl p7zip --noconfirm
-yaourt -S nomachine
+yaourt -S nomachine --noconfirm
 }
 
 
@@ -114,9 +114,9 @@ opcoes=(1 "Virtualbox" on
         8 "Multimidia" on
         9 "Navegadores" on
         10 "Desenvolvimento   " on
-		11 "Youtube" on
-		12 "Jogos" on
-		13 "Acessórios" on)
+	11 "Youtube" on
+	12 "Jogos" on
+	13 "Acessórios" on)
 
 funcoes=$("${cmd[@]}" "${opcoes[@]}" 2>&1 >/dev/tty)
 clear
@@ -151,6 +151,7 @@ do
 			acessorios;;				
     esac
 done
+
 
 
 
