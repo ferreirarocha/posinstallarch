@@ -34,7 +34,8 @@ yaourt -S firefox opera google-chrome vivaldi  yandex-browser-beta --noconfirm
 
 
 feramentas(){
-sudo -S <<< $PASSWORD pacman  -S rsync gparted openssh htop nmap iptraf wget curl p7zip --noconfirm
+sudo -S <<< $PASSWORD pacman  -S rsync  gparted lsof openssh htop nmap iptraf wget curl p7zip --noconfirm
+yaourt -S nomachine
 }
 
 
@@ -87,7 +88,7 @@ yaourt -S community/supertuxkart  --noconfirm
 
 acessorios(){
 sudo -S <<< $PASSWORD ls /opt > /dev/null
-yaourt -S aur/albert tilix	 --noconfirm
+yaourt -S aur/albert tilix	sushi --noconfirm
 sudo -S <<< $PASSWORD sudo pacman -S klavaro  --noconfirm
 
 }
