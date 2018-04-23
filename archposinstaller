@@ -103,7 +103,7 @@ fi
 echo "(Exit status was $exitstatus)"
 
 
-cmd=(whiptail --separate-output --checklist "Selecione as opções:" 22 76 16)
+cmd=(whiptail --title "Minha Seleção de Pacotes" --checklist "Selecione as opções:"  22 40 16)
 opcoes=(1 "Virtualbox" on
         2 "Comunicacao" on
         3 "Gráficos" on
