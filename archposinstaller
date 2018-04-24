@@ -71,12 +71,13 @@ yaourt -S smartgit   --noconfirm
 yaourt -S aur/sublime-text-dev  --noconfirm
 }
 
-youtube(){
+internet(){
 sudo -S <<< $PASSWORD wget -P /opt/ https://raw.githubusercontent.com/ferreirarocha/posinstallarch/master/video  
 sudo -S <<< $PASSWORD wget -P /opt/ https://raw.githubusercontent.com/ferreirarocha/posinstallarch/master/youtube
 sudo -S <<< $PASSWORD chmod +x /opt/video
 sudo -S <<< $PASSWORD chmod +x /opt/youtube
 echo "export PATH=$PATH:/opt " >> /home/marcos/.bashrc
+yaourt -S xdman --noconfirm
 }
 
 jogos(){
@@ -114,7 +115,7 @@ opcoes=(1 "Virtualbox" on
         8 "Multimidia" on
         9 "Navegadores" on
         10 "Desenvolvimento   " on
-	11 "Youtube" on
+	11 "Internet" on
 	12 "Jogos" on
 	13 "Acessórios" on)
 
@@ -144,7 +145,7 @@ do
 		10)
 			desenvolvimento;;
 		11)
-			youtube;;
+			internet;;
 		12)
 			jogos;;	
 		13)
