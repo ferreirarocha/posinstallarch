@@ -77,7 +77,8 @@ sudo -S <<< $PASSWORD wget -P /opt/ https://raw.githubusercontent.com/ferreiraro
 sudo -S <<< $PASSWORD chmod +x /opt/video
 sudo -S <<< $PASSWORD chmod +x /opt/youtube
 echo "export PATH=$PATH:/opt " >> /home/marcos/.bashrc
-yaourt -S xdman --noconfirm
+yaourt -S xdman  community/qbittorrent --noconfirm
+
 }
 
 jogos(){
@@ -89,7 +90,7 @@ yaourt -S community/supertuxkart  --noconfirm
 
 acessorios(){
 sudo -S <<< $PASSWORD ls /opt > /dev/null
-yaourt -S aur/albert tilix	sushi --noconfirm
+yaourt -S aur/albert tilix	sushi  woeusb-git --noconfirm
 sudo -S <<< $PASSWORD sudo pacman -S klavaro  --noconfirm
 
 }
