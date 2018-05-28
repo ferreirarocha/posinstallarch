@@ -2,6 +2,10 @@
 #Email Marcos.fr.rocha@gmail.com
 #Esse script instala os programas necessários para o meu dia a dia.
 
+atualizar(){
+wget -c -P /etc/pacman.conf https://raw.githubusercontent.com/ferreirarocha/posinstallarch/master/pacman.conf
+sudo pacman -Syu
+}
 
 virtualbox(){
 sudo -S <<< $PASSWORD pacman -S virtualbox --noconfirm
@@ -90,8 +94,12 @@ yaourt -S community/supertuxkart  --noconfirm
 
 acessorios(){
 sudo -S <<< $PASSWORD ls /opt > /dev/null
-yaourt -S aur/albert tilix	sushi  woeusb-git --noconfirm
 sudo -S <<< $PASSWORD sudo pacman -S klavaro  --noconfirm
+yaourt -S aur/albert \
+tilix	\
+sushi  \
+woeusb-git --noconfirm
+
 
 }
 
@@ -118,7 +126,8 @@ opcoes=(1 "Virtualbox" on
         10 "Desenvolvimento   " on
 	11 "Internet" on
 	12 "Jogos" on
-	13 "Acessórios" on)
+	13 "Acessórios" on
+	14 "Atualizar" on)
 
 funcoes=$("${cmd[@]}" "${opcoes[@]}" 2>&1 >/dev/tty)
 clear
@@ -150,7 +159,9 @@ do
 		12)
 			jogos;;	
 		13)
-			acessorios;;				
+			acessorios;;
+		14)
+			atualizar;;	
     esac
 done
 
