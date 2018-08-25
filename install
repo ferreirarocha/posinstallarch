@@ -1,0 +1,100 @@
+cfdisk /dev/sda
+
+mkfs.ext4 /dev/sda1
+mkfs.ext4 /dev/sda3
+
+mkswap /dev/sda2
+swapon /dev/sda2
+
+mount /dev/sda1 /mnt
+mkdir /mnt/home
+mount /dev/sda3 /mnt/home
+
+pacstrap /mnt base base-devel
+
+genfstab -U /mnt >> /mnt/etc/fstab
+
+arch-chroot /mnt
+
+rm /etc/localtime
+ln -sf /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
+
+hwclock --systohc --utc
+
+sed  s/\#pt_BR.UTF-8/pt_BR.UTF-8/g  /etc/locale.gen > ds ; cp ds /etc/locale.gen
+
+locale-gen
+
+echo LANG=pt_BR.UTF-8 > /etc/locale.conf
+export LANG=pt_BR.UTF-8
+
+echo chronus > /etc/hostname
+
+pacman -S grub
+
+grub-install /dev/sda
+
+grub-mkconfig -o /boot/grub/grub.cfg
+
+useradd marcos -m
+passwd  marcos
+passwd
+
+curl 'https://www.archlinux.org/mirrorlist/?country=BR&protocol=http&protocol=https&ip_version=4' > mirrorlist ; sed s/#Server/Server/g  mirrorlist > /etc/pacman.d/mirrorlist
+
+nano  /etc/pacman.conf
+
+pacman -Syu
+
+useradd marcos -m
+passwd  marcos
+
+gpasswd -a marcos sys
+gpasswd -a marcos lp
+gpasswd -a marcos network
+gpasswd -a marcos video
+gpasswd -a marcos optical
+gpasswd -a marcos storage
+gpasswd -a marcos scanner
+gpasswd -a marcos power
+
+pacman -S xorg xorg-server xorg-xinit xfce4 xfce4-goodies lxdm openssh
+sudo pacman -S alsa-utils pulseaudio
+sudo pacman -S ttf-dejavu ttf-droid
+pacman -S alsa-{utils,plugins,plugins,firmware} pulseaudio pulseaudio-{equalizer,alsa}
+sudo pacman -S a52dec faac faad2 flac jasper lame libdca libdv libmad libmpeg2 libtheora libvorbis libxv wavpack x264 xvidcore
+sudo pacman -S vlc
+sudo pacman -S p7zip p7zip-plugins unrar tar unzip rsync
+sudo pacman -S p7zip unrar  rsync
+yaourt -S xfce4-dockbarx-plugin-git
+sudo pacman -S --needed base-devel git wget yajl
+sudo pacman -S nautilus
+sudo pacman -S screenfetch
+yaourt -S ksuperkey tpora tilix inkscape  gimp atom
+
+
+
+
+
+sudo sed -i /etc/lxdm/lxdm.conf \
+     -e 's;^# session=/usr/bin/startlxde;session=/usr/bin/startxfce4;g'
+
+systemctl enable sshd
+sudo systemctl enable lxdm
+
+sudo reboot
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
